@@ -1,10 +1,8 @@
 // popup.js
-
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  if (message.action === "verificarLocalStorage") {
-    var urlActual = window.location.href;
-    var urlGuardada = sessionStorage.getItem('urlGuardada');
-    console.log(urlActual);
-  }
-
-});
+function guardarContraseña() {
+  var password = document.getElementById('passwordInput').value;
+  chrome.storage.local.set({ 'password': password }, function() {
+    console.log('Contraseña guardada');
+    window.close();
+  });
+}
